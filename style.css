@@ -1,0 +1,106 @@
+/* Cyberpunk Glassmorphic Dark Theme with Neon Glows */
+:root {
+  --bg-deep: #0b0c10;
+  --bg-surface: rgba(19, 23, 34, 0.65);
+  --border-glass: rgba(66, 153, 225, 0.18);
+  --neon-cyan: #00f0ff;
+  --neon-cyan-glow: rgba(0, 240, 255, 0.45);
+  --neon-purple: #bd00ff;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: #f3f4f6;
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.top-glow-line {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-purple), transparent);
+  box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.app-container {
+  max-width: 1200px;
+  width: 92%;
+  margin: 2rem auto;
+}
+
+.glass-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 1.85rem;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5);
+}
+
+.prompt-textarea {
+  width: 100%;
+  background: rgba(10, 14, 23, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  color: #fff;
+  padding: 1rem;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.prompt-textarea:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 18px var(--neon-cyan-glow);
+}
+
+.btn-generate {
+  width: 100%;
+  background: linear-gradient(135deg, #00f0ff 0%, #0070f3 50%, #bd00ff 100%);
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+  transition: all 0.3s;
+}
+
+.btn-generate:hover {
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+.image-canvas-wrapper {
+  min-height: 380px;
+  background: rgba(10, 13, 20, 0.85);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hologram-scanner {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), #fff, var(--neon-purple), transparent);
+  box-shadow: 0 0 20px var(--neon-cyan);
+  animation: scan 2.2s infinite alternate;
+  display: none;
+}
+
+@keyframes scan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(370px); }
+}
+
+.generated-image.loaded {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
