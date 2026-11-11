@@ -4,49 +4,103 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NovaGen - Uncensored AI Image Studio</title>
+  <meta name="description" content="Free, uncensored AI image generator powered by Perchance AI with futuristic glassmorphism theme.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2300f0ff'/%3E%3Cstop offset='50%25' stop-color='%23bd00ff'/%3E%3Cstop offset='100%25' stop-color='%23ff007f'/%3E%3C/linearGradient%3E%3Cfilter id='glow'%3E%3CfeGaussianBlur stdDeviation='1.2' result='coloredBlur'/%3E%3CfeMerge%3E%3CfeMergeNode in='coloredBlur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cpath fill='url(%23g)' filter='url(%23glow)' d='M16 28.5C15.4 28.5 4 19.5 4 11.5 4 7 7.5 3.5 12 3.5c2.3 0 4.4 1 5.8 2.6L16 4.3l1.8 1.8C19.6 4.5 21.7 3.5 24 3.5c4.5 0 8 3.5 8 8 0 8-11.4 17-12 17z'/%3E%3Cpolygon points='25,3 26.5,7.5 31,9 26.5,10.5 25,15 23.5,10.5 19,9 23.5,7.5' fill='%23ffffff'/%3E%3Cpolygon points='9,14 9.8,16.5 12,17.2 9.8,18 9,20.5 8.2,18 6,17.2 8.2,16.5' fill='%2300f0ff'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="top-glow-line"></div>
+
   <div class="app-container">
+    <!-- Header -->
     <header class="app-header">
-      <div class="brand-badge">⚡ Free &amp; Uncensored AI Pipeline</div>
+      <div class="brand-badge">⚡ Pure Perchance AI Engine</div>
       <h1 class="brand-title">NovaGen Studio</h1>
-      <p class="brand-subtitle">Powered by unofficial Perchance AI with zero paywalls.</p>
+      <p class="brand-subtitle">Generate single or batch images up to 50 at once with 100% Free Perchance AI and zero censorship.</p>
     </header>
 
+    <!-- Main Generation Grid -->
     <main class="studio-grid">
-      <!-- Input Panel -->
+      <!-- Input Controls Panel -->
       <section class="glass-card">
         <div class="input-group">
-          <label class="input-label" for="promptInput">Prompt Description</label>
-          <textarea id="promptInput" class="prompt-textarea" rows="4" placeholder="Describe anything..."></textarea>
+          <label for="promptInput" class="input-label">
+            <span>✨ Prompt Description</span>
+            <span class="label-hint" id="randomizeHint">Random Idea</span>
+          </label>
+          <textarea 
+            id="promptInput" 
+            class="prompt-textarea" 
+            placeholder="Describe anything: e.g. 'A futuristic cyborg samurai standing in neon rain, Tokyo 2099, hyperdetailed 8k, volumetric cyberpunk lighting'..."
+            rows="4"
+          ></textarea>
+          
+          <div class="suggestions-wrap">
+            <span class="suggestion-chip" data-prompt="Cyberpunk bounty hunter in neon-drenched alley, reflections in puddles, cinematic 8k">Cyberpunk Alley</span>
+            <span class="suggestion-chip" data-prompt="Ethereal bioluminescent elven temple hidden inside an ancient cavern waterfall, fantasy concept art">Floating Islands</span>
+            <span class="suggestion-chip" data-prompt="Studio portrait of a mechanical humanoid with glowing cyan eyes, 85mm lens">Cyber Humanoid</span>
+            <span class="suggestion-chip" data-prompt="Cosmic nebula shaped like a giant mystical dragon, space photography">Space Dragon</span>
+          </div>
         </div>
 
         <div class="input-group">
-          <label class="input-label" for="negativePromptInput">Negative Prompt (Optional)</label>
-          <input type="text" id="negativePromptInput" class="text-input" placeholder="blurry, distorted, bad quality">
+          <label for="negativePromptInput" class="input-label">
+            <span>🚫 Negative Prompt (Optional)</span>
+          </label>
+          <input 
+            type="text" 
+            id="negativePromptInput" 
+            class="text-input" 
+            placeholder="blurry, distorted, watermark, low quality, extra limbs, bad anatomy"
+          >
         </div>
 
         <div class="controls-row">
-          <select id="styleSelect" class="select-dropdown">
-            <option value="cinematic">Cinematic 8K</option>
-            <option value="cyberpunk">Cyberpunk Neon</option>
-            <option value="anime">Anime Artwork</option>
-            <option value="photorealistic">Photoreal RAW</option>
-          </select>
-          <select id="engineSelect" class="select-dropdown">
-            <option value="auto">Auto (Perchance + Failover)</option>
-            <option value="perchance">Perchance AI</option>
-            <option value="flux">Flux.1 Uncensored</option>
-          </select>
+          <div class="input-group" style="margin-bottom: 0;">
+            <label for="styleSelect" class="input-label">
+              <span>🎨 Visual Preset</span>
+            </label>
+            <select id="styleSelect" class="select-dropdown">
+              <option value="cinematic">Cinematic 8K</option>
+              <option value="cyberpunk">Cyberpunk Neon</option>
+              <option value="anime">Anime &amp; Manga</option>
+              <option value="photorealistic">Photorealistic RAW</option>
+              <option value="darkfantasy">Dark Gothic Fantasy</option>
+              <option value="synthwave">Retro Synthwave</option>
+              <option value="none">None (Pure Prompt)</option>
+            </select>
+          </div>
+
+          <div class="input-group" style="margin-bottom: 0;">
+            <label for="countSelect" class="input-label">
+              <span>🔢 Number of Images (Up to 50)</span>
+            </label>
+            <select id="countSelect" class="select-dropdown">
+              <option value="1">1 Image</option>
+              <option value="2">2 Images</option>
+              <option value="4">4 Images</option>
+              <option value="8">8 Images</option>
+              <option value="12">12 Images</option>
+              <option value="20">20 Images</option>
+              <option value="35">35 Images</option>
+              <option value="50">50 Images (Max Batch)</option>
+            </select>
+          </div>
         </div>
 
-        <div class="ratio-grid">
-          <button type="button" class="ratio-btn active" data-ratio="1:1">1:1 Square</button>
-          <button type="button" class="ratio-btn" data-ratio="16:9">16:9 Cinema</button>
-          <button type="button" class="ratio-btn" data-ratio="9:16">9:16 Story</button>
-          <button type="button" class="ratio-btn" data-ratio="4:3">4:3 Standard</button>
+        <div class="input-group" style="margin-top: 1.25rem;">
+          <label class="input-label">
+            <span>📐 Aspect Ratio</span>
+          </label>
+          <div class="ratio-grid">
+            <button type="button" class="ratio-btn active" data-ratio="1:1">1:1 Square</button>
+            <button type="button" class="ratio-btn" data-ratio="16:9">16:9 Cinema</button>
+            <button type="button" class="ratio-btn" data-ratio="9:16">9:16 Story</button>
+            <button type="button" class="ratio-btn" data-ratio="4:3">4:3 Standard</button>
+          </div>
         </div>
 
         <button type="button" id="generateBtn" class="btn-generate">
@@ -55,34 +109,62 @@
         </button>
       </section>
 
-      <!-- Canvas Output -->
+      <!-- Result Viewport -->
       <section class="glass-card display-card">
         <div class="display-header">
           <h2 class="display-title">🖼️ Render Canvas</h2>
-          <span id="engineTag" class="engine-tag">Ready</span>
+          <span id="engineTag" class="engine-tag">Perchance AI Ready</span>
         </div>
 
-        <div id="imageCanvas" class="image-canvas-wrapper">
+        <div id="imageCanvas" class="image-canvas-wrapper aspect-square">
+          <!-- Laser scanning holographic bar -->
           <div id="hologramScanner" class="hologram-scanner"></div>
+
+          <!-- Empty placeholder -->
           <div id="emptyState" class="empty-state">
             <div class="empty-icon">🌌</div>
             <h3>Your Creation Awaits</h3>
-            <p>Input your visionary prompt and strike Generate.</p>
+            <p>Input your visionary prompt, select up to 50 images, and strike Generate.</p>
           </div>
+
+          <!-- Holographic Skeleton Loader -->
           <div id="skeletonLoader" class="skeleton-container">
             <div class="hologram-ring"></div>
-            <p class="loader-text">Synthesizing Neural Latents...</p>
+            <div>
+              <p class="loader-text">Synthesizing Perchance AI Latents...</p>
+              <p class="loader-subtext">Communicating with Cluster &amp; Rendering Exact Ratio Pixels</p>
+            </div>
           </div>
-          <img id="resultImage" class="generated-image" style="display: none;" alt="Generated Artwork" />
+
+          <!-- Batch Images Grid View -->
+          <div id="batchContainer" style="display: none; width: 100%; height: 100%; padding: 0.75rem; overflow-y: auto; max-height: 520px;">
+            <div id="batchGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; width: 100%;"></div>
+          </div>
         </div>
 
+        <!-- Action Toolbar -->
         <div id="imageToolbar" class="image-toolbar" style="display: none;">
-          <button type="button" id="copyPromptBtn" class="action-btn">📋 Copy Prompt</button>
-          <button type="button" id="downloadBtn" class="action-btn">💾 Download HD</button>
+          <button type="button" id="copyPromptBtn" class="action-btn">
+            📋 Copy Prompt
+          </button>
+          <button type="button" id="downloadBtn" class="action-btn" style="background: rgba(0, 240, 255, 0.2); border-color: var(--neon-cyan); color: var(--neon-cyan);">
+            💾 Download All HD
+          </button>
         </div>
       </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>NovaGen Studio • Dedicated Perchance AI Engine • Batch Generation up to 50 Images</p>
+    </footer>
   </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotice" class="toast-notice">
+    <span id="toastMsg">Notification</span>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
